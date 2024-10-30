@@ -1,11 +1,23 @@
 import express from "express";
+import cors from "cors";
 
 const app = express();
-const data = ["lorem", "ipsum", "dolor", "sit", "amet"];
 
+app.use(cors({ origin: ["http://localhost:5173"] }));
 
-app.get("/worlds", (req, res) => {
-  res.json(data);
+const sampleEmployee = {
+  name: {
+    first: "Patrick",
+    last: "Francis",
+  },
+  email: "patrick.francis@example.com",
+  picture: {
+    medium: "https://randomuser.me/api/portraits/med/men/40.jpg",
+  },
+};
+
+app.get("/api/employees", (req, res) => {
+  res.json({ results: [sampleEmployee] });
 });
 
 const port = 3310;
@@ -13,3 +25,9 @@ const port = 3310;
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+
+
+
+
+
